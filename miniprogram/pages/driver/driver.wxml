@@ -1,0 +1,16 @@
+<!-- <map id="map" class="mapCss" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" show-location scale="17"/> -->
+
+<map
+    id="map"
+    class="mapCss"
+    longitude="{{longitude}}" 
+    latitude="{{latitude}}"
+    scale='17'
+    polyline="{{polyline}}"
+    show-location
+    markers="{{markers}}"
+></map>
+
+<view class="imageView2">
+    <cover-image class="image" src='https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/cancel.png?sign=eb77d13465b6360114cb735b49658f79&t=1581231900' mode="widthFix" bindtap="logout"></cover-image>
+</view> -->

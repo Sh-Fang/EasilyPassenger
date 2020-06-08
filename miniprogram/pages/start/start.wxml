@@ -1,0 +1,19 @@
+<view hover-class="hover" class="passengerView">
+    <image class="passenger" src="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/%E4%B9%98%E5%AE%A2.png?sign=f60b22c4f8111a4122d0b9dcafc27fbe&t=1589434206" mode="widthFix" lazy-load="false" bindtap="passenger"></image>
+</view>
+<text class="td">我是乘客</text>
+
+
+<view hover-class="hover" class="driverView">
+    <image class="driver" src="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/%E5%8F%B8%E6%9C%BA.png?sign=0b584c9699f5b26d052ffc9d6b085aa4&t=1589434738" mode="widthFix" lazy-load="false" bindtap="driver"></image>
+</view>
+<text class="td">我是司机</text>
+    
+
+<!-- <button type="primary" class="passenger" bindtap="passenger">
+    <text class="td">我是乘客</text>
+</button>
+
+<button type="warn" class="driver" bindtap="driver">
+    <text class="td">我是司机</text>
+</button> -->

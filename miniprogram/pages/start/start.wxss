@@ -1,0 +1,32 @@
+page {
+    /* background: linear-gradient(#FCFDE7,#FCFDE7); */
+    background-color: #FCFDE7;
+}
+.td{
+    display:flex;                    
+    justify-content: center;
+    margin-top: 10rpx;
+    font-size: 35rpx;
+}
+.passenger{
+    margin-top: 250rpx;
+    width:210rpx; 
+    height:210rpx; 
+}
+.passengerView{
+    display:flex;                    
+    justify-content: center;
+}
+.driver{
+    margin-top: 250rpx;
+    width:230rpx; 
+    height:230rpx; 
+}
+.driverView{
+    display:flex;                    
+    justify-content: center;
+}
+.hover{
+    opacity: 0.5;
+    transform: scale(0.95,0.95);
+  }
