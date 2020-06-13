@@ -1,7 +1,7 @@
 const cloud = wx.cloud.database()
 const _=cloud.command
 const app=getApp();
-const location='location'
+const driver='driver'
 
 Page({
 
@@ -9,11 +9,7 @@ Page({
   },
 
   onLoad: function (options) {
-    var that=this
-    wx.cloud.init({
-      env: 'testtest-6zkau',
-      traceUser: true
-    });
+
   },
 
   text1: function (e) {
@@ -32,7 +28,7 @@ Page({
     var userPassword=this.data.text2;
     var carNum=this.data.text3;
     if(userPassword&&userPassword&&carNum){     //只有当三个输入框有值时才执行
-      cloud.collection(location).where(_.or([   //“或”条件查找
+      cloud.collection(driver).where(_.or([   //“或”条件查找
         {
           phone:userPhone
         },
@@ -48,15 +44,12 @@ Page({
               duration: 500,
             });
           }else{                   //否则注册
-            cloud.collection(location).add({
+            cloud.collection(driver).add({
               data:{
                 phone:userPhone,
                 password:userPassword,
                 identity:"driver",
-                latitude:null,
-                longitude:null,
                 carNum:carNum,
-                login_status:false
               }
             }).then(res=>{
               wx.showToast({

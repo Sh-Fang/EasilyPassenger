@@ -1,7 +1,7 @@
 page {
   background-color: #FCFDE7;
   }
-  .i-class{
+  .icard{
     margin-top: 220rpx;
   }
   .input{
@@ -20,11 +20,8 @@ page {
   border-radius: 98rpx;
   }
   .hover{
-    opacity: 0.9;
-    transform: scale(0.9,0.9);
-  }
-  .textHover{
-    cursor:pointer;
+    opacity: 0.5;
+    transform: scale(0.95,0.95);
   }
   
   

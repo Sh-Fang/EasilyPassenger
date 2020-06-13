@@ -1,5 +1,5 @@
 
-<view class="i-class">
+<view class="icard">
   <i-card  title="  /   登录"  thumb="https://6561-easily-take-6v3zj-1259704456.tcb.qcloud.la/system/login.png?sign=204356d8b549b85c176463573506364a&t=1581143474">
     <view slot="content">
         <!-- <button class="button" style="background-color:{{bgColor1}}"  hover-class="hover" open-type="getUserInfo" bindtap="passenger">{{passenger}}</button> -->

@@ -1,6 +1,4 @@
 const app=getApp();
-const cloud = wx.cloud.database();
-const driver="driver";
 const car1="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/1.png?sign=7554c3298bc5d168da87db61e532cd5a&t=1579622296"
 const car2="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/2.png?sign=24e9644ac79a299647f52a0b4e740d47&t=1579622379"
 const car3="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/3.png?sign=4958d478eae4fa2f0c65b2fb41009665&t=1579622394"
@@ -14,10 +12,10 @@ const car10="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/10.png?sign=6b
 Page({
 
   data: {
-    carNum:null,      //司机车号
     latitude: null,
     longitude: null,
-    MyInterval_d:null,   //定时发送该司机位置信息
+    MyInterval_d:null,   //定时接收司机位置信息
+
     polyline: [{     //显示在地图上的路线(注意要和用户界面的一样)
       points: [
         {longitude: 117.149784,latitude: 34.21908},//117.149784,34.21908
@@ -42,7 +40,6 @@ Page({
       dottedLine: false
     }],
 
-
     markers:[
       {iconPath:car1,id:1,latitude:null,longitude:null,width: 35,height: 35},
       {iconPath:car2,id:2,latitude:null,longitude:null,width: 35,height: 35},
@@ -57,22 +54,27 @@ Page({
     ]
   },
 
-  
-
   onLoad: function (options) {
+    var that=this
     wx.showToast({
       title: '正在刷新...',
       icon: 'loading',
       duration: 4000,
       mask: false,
     });
-    this.setData({
-      carNum:parseInt(options.carNum)
-    })
+
     app.receive();    //开始接收消息
+
+    wx.getLocation({
+      type: 'gcj02',
+      success (res) {
+        that.setData({
+          longitude: res.longitude,
+          latitude: res.latitude,
+        })
+      }
+    })
   },
-
-
 
   markerMove:function(markerId,longitude,latitude){       //marker移动
     var mapContext = wx.createMapContext('map', this);
@@ -90,69 +92,40 @@ Page({
     });
   },
 
-  
-
-  upLoadLocation:function(longitude,latitude){   //上传该司机的位置
-    let loginStatus="1"
-    let message=this.data.carNum+","+longitude+","+latitude+","+loginStatus
-    app.publish(message);
-
-    let _carNum=parseInt(app.globalData.carNum)   //marker标识 
-    let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
-    let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
-    
-    this.markerMove(_carNum,_longitude,_latitude)
-
-  },
-
-
-  getLocation:function(){  //获取当前位置
-    var that=this;
-    wx.getLocation({
-      type: 'gcj02',
-      success (res) {
-        that.setData({
-          longitude: res.longitude,
-          latitude: res.latitude,
-        })
-        that.upLoadLocation(res.longitude,res.latitude);//上传该司机的位置
-        
-      }
-    })
-  },
-
-
-  
-
   onShow: function () {
     var that = this;
     that.data.MyInterval_d  = setInterval(function () {
-      that.getLocation();  //获取当前位置
-    }, 1500) //循环间隔 单位ms
+
+      let _carNum=parseInt(app.globalData.carNum)   //marker标识 
+      let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
+      let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
+      
+      let _loginStatus=app.globalData.loginStatus  //如果司机下线，则在乘客端消失该marker
+      if(_loginStatus=="1"){   
+        that.markerMove(_carNum,_longitude,_latitude)
+      }else{
+        that.markerMove(_carNum,null,null)
+      }
+
+    }, 1000) //循环间隔 单位ms
   },
 
 
-  
-
   logout:function(){
     wx.clearStorage();
-
-    let loginStatus="0"   //发送司机下线的消息
-    let message=this.data.carNum+","+this.data.longitude+","+this.data.latitude+","+loginStatus
-    app.publish(message);
-
     wx.redirectTo({
       url: '../start/start',
     });
   },
 
-  
 
-  onHide: function(){
+  onHide: function () {
     clearInterval(this.data.MyInterval_d);
   },
 
-  onUnload: function(){
+
+  onUnload: function () {
     clearInterval(this.data.MyInterval_d);
   },
+
 })

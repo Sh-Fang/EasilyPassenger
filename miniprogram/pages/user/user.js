@@ -1,10 +1,9 @@
 const cloud = wx.cloud.database();
-const location="location";
+const driver="driver";
 const app=getApp();
 Page({
 
   data: {
-    MyInterval_u:null,
     userInfo:{
       phone:null,
       password:null,
@@ -13,13 +12,8 @@ Page({
   },
   
   onLoad: function (options) {
-    wx.cloud.init({
-      env: 'testtest-6zkau',
-      traceUser: true
-    });
     wx.getSystemInfo({
       success: (res)=>{
-        console.log(res.locationEnabled)
         if(res.locationEnabled==false||!res.locationEnabled){
           wx.showModal({
             title: '系统定位未开启',
@@ -31,7 +25,7 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success: (res)=>{
-        cloud.collection(location).where({
+        cloud.collection(driver).where({
           phone:res.data.userInfo.phone,
           password: res.data.userInfo.password
         }).get({
@@ -53,7 +47,7 @@ Page({
                 duration: 1000,
               });
               wx.redirectTo({
-                url: '../driver/driver',
+                url: '../driver/driver?carNum='+res.data[0].carNum,
               })
             }
           }
@@ -87,28 +81,27 @@ Page({
 
 
   login:function(){
-    
     var that=this;
     var phone = this.data.text1;
     var password = this.data.text2;
     wx.getSystemInfo({
       success: (res)=>{
-        console.log(res.locationEnabled)
         if(res.locationEnabled==false||!res.locationEnabled){
           wx.showModal({
             title: '系统定位未开启',
             content: '请在手机的“设置”中开启定位',
           });
-        }else{
-          if(phone&&password){
-            cloud.collection(location).where({
+        }
+        else{
+          if(phone&&password){     //如果输入框不为空
+            cloud.collection(driver).where({
               phone:phone,
               password:password
             }).get({
               success:function(res){
                 if(res.data.length==0){
                   wx.showToast({
-                    title: '信息有误',
+                    title: '账号或密码有误',
                     icon: 'none',
                     duration: 1000,
                     mask: false,
@@ -129,7 +122,7 @@ Page({
                   that.MySetStorage(res);
                   console.log("司机_已存入缓存")
                   wx.redirectTo({
-                    url: '../driver/driver',
+                    url: '../driver/driver?carNum='+res.data[0].carNum,
                   });
                 }
                 if(res.data[0].identity=="admin"&&res.data[0].phone==phone&&res.data[0].password==password){
@@ -154,9 +147,9 @@ Page({
   },
 
   onHide: function(){
-    clearInterval(this.data.MyInterval_u);
+
   },
-  onUnload: function(){
-    clearInterval(this.data.MyInterval_u);
-  }
+
 })
+
+

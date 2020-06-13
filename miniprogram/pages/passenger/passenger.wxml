@@ -1,5 +1,3 @@
-<!-- <map id="map" class="mapCss" latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" show-location scale="17"/> -->
-
 <map
     id="map"
     class="mapCss"
