@@ -1,8 +1,7 @@
 
 <view class="icard">
-  <i-card  title="  /   登录"  thumb="https://6561-easily-take-6v3zj-1259704456.tcb.qcloud.la/system/login.png?sign=204356d8b549b85c176463573506364a&t=1581143474">
+  <i-card  title="     登陆" extra="我是司机"  thumb="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/%E5%8F%B8%E6%9C%BA.png?sign=754479c9e8a84c01e1b1ba4b56e61c13&t=1592026361">
     <view slot="content">
-        <!-- <button class="button" style="background-color:{{bgColor1}}"  hover-class="hover" open-type="getUserInfo" bindtap="passenger">{{passenger}}</button> -->
         <input class='input' placeholder="手机号"  bindinput='text1'></input>
         <input class='input' placeholder="密码"   password="{{true}}" bindinput='text2'></input>
         <button class="button"   hover-class="hover" open-type="getUserInfo" bindtap="login">登陆</button>
