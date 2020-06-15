@@ -11,6 +11,22 @@
     markers="{{markers}}"
 ></map>
 
-<view class="imageView2" hover-class="hover">
-    <cover-image class="image" src='https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/cancel.png?sign=eb77d13465b6360114cb735b49658f79&t=1581231900' mode="widthFix" bindtap="logout"></cover-image>
-</view> -->
+
+<view class="closeLocate" hover-class="hover">
+    <cover-image class="closeLocateImage" src='../img/cancel.png' mode="widthFix" bindtap="closeLocate"></cover-image>
+    <text class="closeLocateText">关闭定位</text>
+</view>
+
+<view class="openLocate" hover-class="hover">
+    <cover-image class="openLocateImage" src='../img/locate.png' mode="widthFix" bindtap="openLocate"></cover-image>
+    <text class="openLocateText">开启定位</text>
+</view>
+
+
+<view class="exit" hover-class="hover">
+    <cover-image class="closeLocateImage" src='../img/exit.png' mode="widthFix" bindtap="exit"></cover-image>
+    <text class="closeLocateText">退出登陆</text>
+</view>
+
+
+

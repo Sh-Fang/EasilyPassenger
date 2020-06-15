@@ -11,8 +11,8 @@
   "window": {
     "navigationStyle": "custom",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "自定义导航栏",
+    "navigationBarBackgroundColor": "#FCFDE7",
+    "navigationBarTitleText": "矿大小黄车",
     "navigationBarTextStyle":"white"
   },
   "permission": {

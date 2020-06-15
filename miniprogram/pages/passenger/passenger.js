@@ -57,9 +57,9 @@ Page({
   onLoad: function (options) {
     var that=this
     wx.showToast({
-      title: '正在刷新...',
+      title: '正在显示司机',
       icon: 'loading',
-      duration: 4000,
+      duration: 2000,
       mask: false,
     });
 
@@ -113,9 +113,12 @@ Page({
 
   logout:function(){
     wx.clearStorage();
-    wx.redirectTo({
-      url: '../start/start',
+    wx.navigateBack({
+      delta: 1
     });
+    // wx.redirectTo({
+    //   url: '../start/start',
+    // });
   },
 
 

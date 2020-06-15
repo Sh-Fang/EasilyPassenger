@@ -2,18 +2,47 @@
     height: 100vh;
     width: 100%
   }
-  .imageView1{
+  .exit{
     position:fixed; 
-    bottom: 10rpx;
-    margin-left: 40%;
+    bottom: 50rpx;
+    right: 50rpx;
   }
-  .imageView2{
+  .openLocate{
     position:fixed; 
-    bottom: 0;
-    margin-left: 80%;
+    bottom: 150rpx;
+    left: 315rpx;
   }
-  .image{
+  .closeLocate{
+    position:fixed; 
+    bottom: 50rpx;
+    left: 50rpx;
+  }
+  .closeLocateText{
+    display:flex;                    
+    justify-content: center;
+    margin-top: 10rpx;
+    font-size: 25rpx;
+    color:  #EF6636;
+  }
+  .openLocateText{
+    display:flex;                    
+    justify-content: center;
+    margin-top: 10rpx;
+    font-size: 25rpx;
+    color: #1296db;
+  }
+  .closeLocateText{
+    display:flex;                    
+    justify-content: center;
+    margin-top: 10rpx;
+    font-size: 25rpx;
+    color: #d81e06;
+  }
+  .openLocateImage{
     width:150rpx
+  }
+  .closeLocateImage{
+    width:100rpx
   }
   .hover{
     opacity: 0.5;

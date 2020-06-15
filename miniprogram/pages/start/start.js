@@ -9,7 +9,7 @@ Page({
   },
 
   driver:function(){
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../user/user',
     });
   },

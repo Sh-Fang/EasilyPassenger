@@ -15,9 +15,11 @@ Page({
 
   data: {
     carNum:null,      //司机车号
+    outControl:false,   //外控制变量
     latitude: null,
     longitude: null,
     MyInterval_d:null,   //定时发送该司机位置信息
+    isLocate:true,       //“开始定位”按钮是否可按
     polyline: [{     //显示在地图上的路线(注意要和用户界面的一样)
       points: [
         {longitude: 117.149784,latitude: 34.21908},//117.149784,34.21908
@@ -60,12 +62,6 @@ Page({
   
 
   onLoad: function (options) {
-    wx.showToast({
-      title: '正在刷新...',
-      icon: 'loading',
-      duration: 4000,
-      mask: false,
-    });
     this.setData({
       carNum:parseInt(options.carNum)
     })
@@ -90,20 +86,38 @@ Page({
     });
   },
 
-  
 
   upLoadLocation:function(longitude,latitude){   //上传该司机的位置
-    let loginStatus="1"
-    let message=this.data.carNum+","+longitude+","+latitude+","+loginStatus
-    app.publish(message);
+    if(this.data.outControl==true){
+      let loginStatus="1"
+      let message=this.data.carNum+","+longitude+","+latitude+","+loginStatus
+      app.publish(message);
 
-    let _carNum=parseInt(app.globalData.carNum)   //marker标识 
-    let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
-    let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
-    
-    this.markerMove(_carNum,_longitude,_latitude)
-
+      let _carNum=parseInt(app.globalData.carNum)   //marker标识 
+      let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
+      let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
+      let _loginStatus=app.globalData.loginStatus  //如果司机下线，则在乘客端消失该marker
+      
+      if(_loginStatus=="1"){   
+        this.markerMove(_carNum,_longitude,_latitude)
+      }else if(_loginStatus=="0"){
+        this.markerMove(_carNum,null,null)
+      }
+    }else if(this.data.outControl==false){
+      let _carNum=parseInt(app.globalData.carNum)   //marker标识 
+      let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
+      let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
+      let _loginStatus=app.globalData.loginStatus  //如果司机下线，则在乘客端消失该marker
+      if(_loginStatus=="1"){   
+        this.markerMove(_carNum,_longitude,_latitude)
+      }else if(_loginStatus=="0"){
+        this.markerMove(_carNum,null,null)
+      }
+    }
   },
+
+
+
 
 
   getLocation:function(){  //获取当前位置
@@ -125,31 +139,107 @@ Page({
   
 
   onShow: function () {
-    var that = this;
+    var that=this;
+    that.setData({
+      isLocate:true   //设置按钮为可按状态
+    })
+    wx.getLocation({
+      type: 'gcj02',
+      success (res) {
+        that.setData({
+          longitude: res.longitude,
+          latitude: res.latitude,
+        })
+      }
+    })
+
     that.data.MyInterval_d  = setInterval(function () {
       that.getLocation();  //获取当前位置
     }, 1500) //循环间隔 单位ms
   },
 
 
-  
 
-  logout:function(){
-    wx.clearStorage();
+  openLocate:function(){   //开始定位
+    var that = this;
+    if(!that.data.isLocate){   //按钮不可按
+      wx.showToast({
+        title: '请不要多次点击',
+        icon: 'none',
+        duration: 1000,
+        mask: false,
+      });
+    }else{
+      wx.showToast({
+        title: '正在开启',
+        icon: 'loading',
+        duration: 2500,
+        mask: true,
+      });
+
+      that.setData({
+        outControl:true,   //开启定位
+        isLocate:false    //按下一次后就不能再按了
+      })
+
+    }
+    
+  },
+
+
+  closeLocate:function(){
+    wx.showToast({
+      title: '正在关闭',
+      icon: 'loading',
+      duration: 1500,
+      mask: true,
+    });
 
     let loginStatus="0"   //发送司机下线的消息
     let message=this.data.carNum+","+this.data.longitude+","+this.data.latitude+","+loginStatus
     app.publish(message);
 
-    wx.redirectTo({
-      url: '../start/start',
+    this.setData({
+      isLocate:true,   //将定位按钮设为可以按
+      outControl:false   //关闭定位
+    })
+  },
+
+  
+
+  exit:function(){
+    let loginStatus="0"   //发送司机下线的消息
+    let message=this.data.carNum+","+this.data.longitude+","+this.data.latitude+","+loginStatus
+    wx.showModal({
+      title: '退出登陆',
+      content: '是否清除账号信息？(下次登陆需要重新输入账号和密码)',
+      showCancel: true,
+      cancelText: '否',
+      cancelColor: '#000000',
+      confirmText: '是',
+      confirmColor: '#3CC51F',
+      success: (result) => {
+        if(result.confirm){    //如果点击确定
+          wx.clearStorage();   //清除缓存
+          app.publish(message);
+          wx.redirectTo({
+            url: '../start/start',
+          });
+        }
+        if(result.cancel){     //如果点击否
+          app.publish(message);
+          wx.redirectTo({
+            url: '../start/start',
+          });
+        }
+      },
     });
   },
 
   
 
   onHide: function(){
-    clearInterval(this.data.MyInterval_d);
+    // clearInterval(this.data.MyInterval_d);
   },
 
   onUnload: function(){
