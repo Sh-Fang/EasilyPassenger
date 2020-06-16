@@ -20,6 +20,7 @@ Page({
     longitude: null,
     MyInterval_d:null,   //定时发送该司机位置信息
     isLocate:true,       //“开始定位”按钮是否可按
+    noticeBar:"定位已关闭",   //显示在通告栏上的信息
     polyline: [{     //显示在地图上的路线(注意要和用户界面的一样)
       points: [
         {longitude: 117.149784,latitude: 34.21908},//117.149784,34.21908
@@ -178,6 +179,7 @@ Page({
       });
 
       that.setData({
+        noticeBar:"定位已开启",
         outControl:true,   //开启定位
         isLocate:false    //按下一次后就不能再按了
       })
@@ -200,6 +202,7 @@ Page({
     app.publish(message);
 
     this.setData({
+      noticeBar:"定位已关闭",
       isLocate:true,   //将定位按钮设为可以按
       outControl:false   //关闭定位
     })
@@ -212,7 +215,7 @@ Page({
     let message=this.data.carNum+","+this.data.longitude+","+this.data.latitude+","+loginStatus
     wx.showModal({
       title: '退出登陆',
-      content: '是否清除账号信息？(下次登陆需要重新输入账号和密码)',
+      content: '是否保留账号信息？(下次登陆无需输入账号和密码)',
       showCancel: true,
       cancelText: '否',
       cancelColor: '#000000',
@@ -220,13 +223,13 @@ Page({
       confirmColor: '#3CC51F',
       success: (result) => {
         if(result.confirm){    //如果点击确定
-          wx.clearStorage();   //清除缓存
           app.publish(message);
           wx.redirectTo({
             url: '../start/start',
           });
         }
         if(result.cancel){     //如果点击否
+          wx.clearStorage();   //清除缓存
           app.publish(message);
           wx.redirectTo({
             url: '../start/start',

@@ -5,7 +5,7 @@
   .exit{
     position:fixed; 
     bottom: 10rpx;
-    margin-left: 40%;
+    right: 10rpx;
   }
   .exitImage{
     width:150rpx

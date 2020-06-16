@@ -19,40 +19,41 @@ Page({
             title: '系统定位未开启',
             content: '请在手机的“设置”中开启定位',
           });
+        }else{
+          wx.getStorage({
+            key: 'userInfo',
+            success: (res)=>{
+              cloud.collection(driver).where({
+                phone:res.data.userInfo.phone,
+                password: res.data.userInfo.password
+              }).get({
+                success:function(res){
+                  if(res.data[0].identity=="admin"){
+                    wx.showToast({
+                      title: '正在自动登陆',
+                      icon: 'loading',
+                      duration: 1000,
+                    });
+                    wx.navigateTo({
+                      url: '../admin/admin',
+                    })
+                  }
+                  if(res.data[0].identity=="driver"){
+                    wx.showToast({
+                      title: '正在自动登陆',
+                      icon: 'loading',
+                      duration: 1000,
+                    });
+                    wx.redirectTo({
+                      url: '../driver/driver?carNum='+res.data[0].carNum,
+                    })
+                  }
+                }
+              })
+            }
+          });
         }
       },
-    });
-    wx.getStorage({
-      key: 'userInfo',
-      success: (res)=>{
-        cloud.collection(driver).where({
-          phone:res.data.userInfo.phone,
-          password: res.data.userInfo.password
-        }).get({
-          success:function(res){
-            if(res.data[0].identity=="admin"){
-              wx.showToast({
-                title: '正在自动登陆',
-                icon: 'loading',
-                duration: 1000,
-              });
-              wx.navigateTo({
-                url: '../admin/admin',
-              })
-            }
-            if(res.data[0].identity=="driver"){
-              wx.showToast({
-                title: '正在自动登陆',
-                icon: 'loading',
-                duration: 1000,
-              });
-              wx.redirectTo({
-                url: '../driver/driver?carNum='+res.data[0].carNum,
-              })
-            }
-          }
-        })
-      }
     });
   },
 
