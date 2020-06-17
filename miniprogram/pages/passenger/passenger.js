@@ -86,7 +86,7 @@ Page({
       },
       autoRotate: false,
       rotate: 0,
-      duration: 1000,
+      duration: 100,
       animationEnd: ()=>{},
       fail: ()=>{}
     });
@@ -99,15 +99,16 @@ Page({
       let _carNum=parseInt(app.globalData.carNum)   //marker标识 
       let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
       let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
-      
       let _loginStatus=app.globalData.loginStatus  //如果司机下线，则在乘客端消失该marker
-      if(_loginStatus=="1"){   
-        that.markerMove(_carNum,_longitude,_latitude)
-      }else{
-        that.markerMove(_carNum,null,null)
+      
+      if(_carNum){   //如果_carNum有值
+        if(_loginStatus=="1"){  //如果司机在线
+          that.markerMove(_carNum,_longitude,_latitude)
+        }else if(_loginStatus=="0"){  //如果司机下线
+          that.markerMove(_carNum,null,null)
+        }  
       }
-
-    }, 1000) //循环间隔 单位ms
+    }, 100) //循环间隔 单位ms
   },
 
 

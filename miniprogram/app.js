@@ -90,6 +90,7 @@ App({
       });
       this.checkUpdateVersion();
       this.connect();   //连接MQTT服务器
+      // this.receive();
     }
     
 

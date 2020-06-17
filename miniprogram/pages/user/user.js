@@ -14,12 +14,14 @@ Page({
   onLoad: function (options) {
     wx.getSystemInfo({
       success: (res)=>{
+        console.log(res)
         if(res.locationEnabled==false||!res.locationEnabled){
           wx.showModal({
             title: '系统定位未开启',
             content: '请在手机的“设置”中开启定位',
           });
-        }else{
+        }
+        else{
           wx.getStorage({
             key: 'userInfo',
             success: (res)=>{

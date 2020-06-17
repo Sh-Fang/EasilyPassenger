@@ -19,8 +19,10 @@ Page({
     latitude: null,
     longitude: null,
     MyInterval_d:null,   //定时发送该司机位置信息
+    MyInterval_receive:null,   //接收消息的定时器
     isLocate:true,       //“开始定位”按钮是否可按
     noticeBar:"定位已关闭",   //显示在通告栏上的信息
+    isShowNoticeBar:true,    //是否允许显示“定位已开启”通知栏
     polyline: [{     //显示在地图上的路线(注意要和用户界面的一样)
       points: [
         {longitude: 117.149784,latitude: 34.21908},//117.149784,34.21908
@@ -64,7 +66,7 @@ Page({
 
   onLoad: function (options) {
     this.setData({
-      carNum:parseInt(options.carNum)
+      carNum:parseInt(options.carNum)    //该司机的车号
     })
     app.receive();    //开始接收消息
   },
@@ -81,7 +83,7 @@ Page({
       },
       autoRotate: false,
       rotate: 0,
-      duration: 1000,
+      duration: 100,
       animationEnd: ()=>{},
       fail: ()=>{}
     });
@@ -94,26 +96,12 @@ Page({
       let message=this.data.carNum+","+longitude+","+latitude+","+loginStatus
       app.publish(message);
 
-      let _carNum=parseInt(app.globalData.carNum)   //marker标识 
-      let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
-      let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
-      let _loginStatus=app.globalData.loginStatus  //如果司机下线，则在乘客端消失该marker
-      
-      if(_loginStatus=="1"){   
-        this.markerMove(_carNum,_longitude,_latitude)
-      }else if(_loginStatus=="0"){
-        this.markerMove(_carNum,null,null)
-      }
-    }else if(this.data.outControl==false){
-      let _carNum=parseInt(app.globalData.carNum)   //marker标识 
-      let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
-      let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
-      let _loginStatus=app.globalData.loginStatus  //如果司机下线，则在乘客端消失该marker
-      if(_loginStatus=="1"){   
-        this.markerMove(_carNum,_longitude,_latitude)
-      }else if(_loginStatus=="0"){
-        this.markerMove(_carNum,null,null)
-      }
+      if(this.data.isShowNoticeBar){ //允许在通知栏上显示“定位已开启”
+        this.setData({
+          noticeBar:"定位已开启",
+          isShowNoticeBar:false  //因为是不断的循环，所以第一次将文字改成了"定位已开启"后，就不再修改了
+        })
+      } 
     }
   },
 
@@ -156,7 +144,22 @@ Page({
 
     that.data.MyInterval_d  = setInterval(function () {
       that.getLocation();  //获取当前位置
-    }, 1500) //循环间隔 单位ms
+    }, 1000) //循环间隔 单位ms
+
+    that.data.MyInterval_receive=setInterval(function () {   //接收消息的定时器
+      let _carNum=parseInt(app.globalData.carNum)   //marker标识 
+      let _longitude=app.globalData.longitude //一次性从app.globalData中获取数据的原因:因为每一次发布消息的间隔是2秒,
+      let _latitude=app.globalData.latitude    //这2秒中,可能会有其他司机发布了位置信息,因此为了避免获取到的carNum和longitude等不匹配,所以一次性获取到三个数据
+      let _loginStatus=app.globalData.loginStatus  //如果司机下线，则在乘客端消失该marker
+      
+      if(_carNum){   //如果_carNum有值
+        if(_loginStatus=="1"){  //如果司机在线
+          that.markerMove(_carNum,_longitude,_latitude)
+        }else if(_loginStatus=="0"){  //如果司机下线
+          that.markerMove(_carNum,null,null)
+        }  
+      }
+    },100)  //疯狂的读取本地的app.globalData
   },
 
 
@@ -179,7 +182,6 @@ Page({
       });
 
       that.setData({
-        noticeBar:"定位已开启",
         outControl:true,   //开启定位
         isLocate:false    //按下一次后就不能再按了
       })
@@ -204,7 +206,8 @@ Page({
     this.setData({
       noticeBar:"定位已关闭",
       isLocate:true,   //将定位按钮设为可以按
-      outControl:false   //关闭定位
+      outControl:false,  //关闭定位
+      isShowNoticeBar:true  //关闭了定位，所以下次开启定位的时候，可以修改通知栏上的文字
     })
   },
 
