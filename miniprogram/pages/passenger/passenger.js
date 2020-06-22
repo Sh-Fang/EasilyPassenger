@@ -1,14 +1,12 @@
 const app=getApp();
-const car1="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/1.png?sign=7554c3298bc5d168da87db61e532cd5a&t=1579622296"
-const car2="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/2.png?sign=24e9644ac79a299647f52a0b4e740d47&t=1579622379"
-const car3="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/3.png?sign=4958d478eae4fa2f0c65b2fb41009665&t=1579622394"
-const car4="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/4.png?sign=395d6d6001c38ff3cfc0dfeaaeb8ce0c&t=1579622408"
-const car5="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/5.png?sign=514b7696249642c037ce218619f7f311&t=1579622537"
-const car6="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/6.png?sign=31ca16d7ea7fc63bc9ea64911c4f6dc3&t=1579622552"
-const car7="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/7.png?sign=543358b9a32e7bacdc82242828354454&t=1579622566"
-const car8="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/8.png?sign=27381a2efecc5540861b786c2f36d687&t=1579622583"
-const car9="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/9.png?sign=c6c6929094c2710a1ac85e5202bf1bc6&t=1579622599"
-const car10="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/10.png?sign=6b9bb56206eb900cfd5fbd9db1d76858&t=1579622616"
+const car1="../img/1.png"
+const car2="../img/2.png"
+const car3="../img/3.png"
+const car4="../img/4.png"
+const car5="../img/5.png"
+const car6="../img/6.png"
+const car7="../img/7.png"
+const car8="../img/8.png"
 Page({
 
   data: {
@@ -49,8 +47,6 @@ Page({
       {iconPath:car6,id:6,latitude:null,longitude:null,width: 35,height: 35},
       {iconPath:car7,id:7,latitude:null,longitude:null,width: 35,height: 35},
       {iconPath:car8,id:8,latitude:null,longitude:null,width: 35,height: 35},
-      {iconPath:car9,id:9,latitude:null,longitude:null,width: 35,height: 35},
-      {iconPath:car10,id:10,latitude:null,longitude:null,width: 35,height: 35}
     ]
   },
 

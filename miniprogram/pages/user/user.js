@@ -89,16 +89,7 @@ Page({
     var password = this.data.text2;
     wx.getSystemInfo({
       success: (res)=>{
-        if(res.locationEnabled==false||!res.locationEnabled){
-          wx.showModal({
-            title: '系统定位未开启',
-            content: '请在手机的“设置”中开启定位',
-          });
-        }
-        // if(null){
-
-        // }
-        else{
+        if(res.locationEnabled==true||res.locationEnabled||res.platform == "devtools"){
           if(phone&&password){     //如果输入框不为空
             cloud.collection(driver).where({
               phone:phone,
@@ -140,13 +131,20 @@ Page({
                 }
               }
             })
-          }else{
+          }
+          else{
             wx.showToast({
               title: '请输入登陆信息',
               icon: 'none',
               duration: 1000,
             });
           }
+        }
+        else{
+          wx.showModal({
+            title: '系统定位未开启',
+            content: '请在手机的“设置”中开启定位',
+          });
         }
       },
     });
