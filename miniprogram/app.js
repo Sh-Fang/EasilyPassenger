@@ -77,7 +77,6 @@ App({
     })
   },
 
-  
 
 
   onLaunch: function () {

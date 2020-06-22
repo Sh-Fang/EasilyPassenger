@@ -95,6 +95,9 @@ Page({
             content: '请在手机的“设置”中开启定位',
           });
         }
+        // if(null){
+
+        // }
         else{
           if(phone&&password){     //如果输入框不为空
             cloud.collection(driver).where({
