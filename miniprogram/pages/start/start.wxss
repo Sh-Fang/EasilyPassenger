@@ -1,6 +1,9 @@
 page {
     background-color: #FCFDE7;
 }
+.noticeBar{
+    /* margin-top: 85rpx; */
+}
 .td{
     display:flex;                    
     justify-content: center;

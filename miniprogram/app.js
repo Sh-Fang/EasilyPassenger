@@ -18,8 +18,12 @@ App({
     carNum:null,
     longitude: null,
     latitude: null,
-    loginStatus:null    //若司机下线，则该值为0，若在线，则值为1
+    loginStatus:null,    //若司机下线，则该值为0，若在线，则值为1
+    noticeBar:"",      //start页面的通知栏消息
   },
+
+  
+
   checkUpdateVersion:function() {
     updateManager.onCheckForUpdate(function (res) {
       // 请求完新版本信息的回调
@@ -80,6 +84,7 @@ App({
 
 
   onLaunch: function () {
+    var that=this;
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {
@@ -87,7 +92,17 @@ App({
         env: 'testtest-6zkau',
         traceUser: true,
       });
-      this.checkUpdateVersion();
+
+      wx.cloud.callFunction({   //调用云函数获取noticeBar的消息
+        name: 'noticeBar',
+        data: {},
+        success: function(res) {
+          that.globalData.noticeBar=res.result.message   
+          // console.log(res.result.message)
+        },
+      })
+
+      this.checkUpdateVersion();  //检查小程序是否有更新
       this.connect();   //连接MQTT服务器
       // this.receive();
     }

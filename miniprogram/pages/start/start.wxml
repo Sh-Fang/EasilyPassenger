@@ -1,4 +1,6 @@
-
+<i-notice-bar i-class="noticeBar" icon="systemprompt" loop speed="7000">
+    {{noticeBar}}
+</i-notice-bar>
 
 <view hover-class="hover" class="passengerView">
     <image class="passenger" src="../img/passenger.png" mode="widthFix" lazy-load="false" bindtap="passenger"></image>
