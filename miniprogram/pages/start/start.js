@@ -2,21 +2,20 @@ const app=getApp();
 
 Page({
   data: {
-    noticeBar:null,   //显示在通告栏上的信息
-    MyInterval:null   //定时器
+    noticeBar:"------------------------------------------------------",   //显示在通告栏上的信息
   },
 
   onLoad:function(){
     var that=this;
-    that.data.MyInterval = setInterval(function () {
-      if(app.globalData.noticeBar){  //如果检测到app.globalData.noticeBar有值
+    wx.cloud.callFunction({   //调用云函数获取noticeBar的消息
+      name: 'noticeBar',
+      data: {},
+      success: function(res) {
         that.setData({
-          noticeBar:app.globalData.noticeBar
-        })
-        clearInterval(that.data.MyInterval);
-      }
-    }, 1000) //循环间隔 单位ms
-    
+          noticeBar:res.result.message  
+        }) 
+      },
+    }) 
   },
 
 

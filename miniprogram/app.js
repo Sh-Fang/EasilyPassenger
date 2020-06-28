@@ -19,7 +19,6 @@ App({
     longitude: null,
     latitude: null,
     loginStatus:null,    //若司机下线，则该值为0，若在线，则值为1
-    noticeBar:"",      //start页面的通知栏消息
   },
 
   
@@ -92,15 +91,6 @@ App({
         env: 'testtest-6zkau',
         traceUser: true,
       });
-
-      wx.cloud.callFunction({   //调用云函数获取noticeBar的消息
-        name: 'noticeBar',
-        data: {},
-        success: function(res) {
-          that.globalData.noticeBar=res.result.message   
-          // console.log(res.result.message)
-        },
-      })
 
       this.checkUpdateVersion();  //检查小程序是否有更新
       this.connect();   //连接MQTT服务器
