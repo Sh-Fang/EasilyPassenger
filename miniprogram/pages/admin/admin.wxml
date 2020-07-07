@@ -1,13 +1,14 @@
 
-<view class="i-class">
+<view class="i-card">
   <i-card title="司机注册" thumb="https://6561-easily-take-6v3zj-1259704456.tcb.qcloud.la/system/admin.png?sign=ec4cc465040e912d5b1092fdf862b075&t=1581143454">
     <view slot="content">
-        <input class='input' placeholder="手机号"  bindinput='text1'></input>
-        <input class='input' placeholder="密码"  bindinput='text2'></input>
-        <input class='input' placeholder="车号"  bindinput='text3'></input>
+        <input class='input' type="number" value="{{_phone}}" placeholder="手机号"  bindinput='text1'></input>
+        <input class='input' type="number" value="{{_passWord}}" placeholder="密码"  bindinput='text2'></input>
+        <input class='input' type="number" value="{{_carNum}}" placeholder="车号"  bindinput='text3'></input>
     </view> 
     <view slot="footer">
         <button class="button" hover-class="hover" bindtap="userRegister">注册</button>
+        <button class="button" hover-class="hover" bindtap="list">查看列表</button>
     </view>
   </i-card>
 </view>

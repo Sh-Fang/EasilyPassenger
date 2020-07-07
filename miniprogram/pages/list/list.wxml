@@ -1,0 +1,12 @@
+<view class="card" wx:for="{{_listObj}}">
+    <i-card>
+        <view slot="content">
+            <text space="ensp">车  号: {{item.carNum}}\n</text>
+            <text space="ensp">手机号: {{item.phone}}\n</text>
+            <text space="ensp">密  码: {{item.password}}</text>
+        </view>
+        <view slot="footer" >
+            <button type="warn" id="{{index}}" bindtap="deleteDriver" >删除</button>
+        </view>
+  </i-card>
+</view>

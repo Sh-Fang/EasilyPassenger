@@ -2,11 +2,13 @@
   "pages": [
     
     "pages/start/start",
+    "pages/admin/admin",
     "pages/user/user",
     "pages/driver/driver",
     "pages/logs/logs",
     "pages/passenger/passenger",
-    "pages/admin/admin"
+    "pages/list/list"
+    
   ],
   "window": {
     "navigationStyle": "custom",

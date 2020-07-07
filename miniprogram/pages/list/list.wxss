@@ -1,0 +1,6 @@
+page {
+    background-color: #FCFDE7;
+  }
+.card{
+    margin-top: 30rpx;
+}

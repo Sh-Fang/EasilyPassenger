@@ -6,7 +6,7 @@ cloud.init()
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  let message="作者准备考研了，iOS端的问题暂时无法修复，抱歉！"
+  let message=" "//非常抱歉！作者准备考研了，因此iOS端的问题暂时无法修复
   return {
     message
   }

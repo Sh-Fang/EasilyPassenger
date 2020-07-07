@@ -2,7 +2,7 @@ const app=getApp();
 
 Page({
   data: {
-    noticeBar:"------------------------------------------------------",   //显示在通告栏上的信息
+    noticeBar:"----------------------------------------------------------------",   //显示在通告栏上的信息
   },
 
   onLoad:function(){
@@ -60,4 +60,8 @@ Page({
       url: '../user/user',
     });
   },
+
+  onShareAppMessage: function () {
+
+  }
 })

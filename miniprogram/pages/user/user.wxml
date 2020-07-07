@@ -2,9 +2,9 @@
 <view class="icard">
   <i-card  title="     登陆" extra="我是司机"  thumb="https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/%E5%8F%B8%E6%9C%BA.png?sign=754479c9e8a84c01e1b1ba4b56e61c13&t=1592026361">
     <view slot="content">
-        <input class='input' placeholder="手机号"  bindinput='text1'></input>
-        <input class='input' placeholder="密码"   password="{{true}}" bindinput='text2'></input>
-        <button class="button"   hover-class="hover" open-type="getUserInfo" bindtap="login">登陆</button>
-    </view> 
+        <input class='input' type="number" placeholder="手机号"  bindinput='text1'></input>
+        <input class='input' type="number" placeholder="密码"   password="{{true}}" bindinput='text2'></input>
+        <button class="button" type="number" hover-class="hover" open-type="getUserInfo" bindtap="login">登陆</button>
+    </view>
   </i-card>
 </view>

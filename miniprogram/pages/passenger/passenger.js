@@ -7,6 +7,8 @@ const car5="../img/5.png"
 const car6="../img/6.png"
 const car7="../img/7.png"
 const car8="../img/8.png"
+const car9="../img/9.png"
+const car10="../img/10.png"
 Page({
 
   data: {
@@ -47,6 +49,8 @@ Page({
       {iconPath:car6,id:6,latitude:null,longitude:null,width: 35,height: 35},
       {iconPath:car7,id:7,latitude:null,longitude:null,width: 35,height: 35},
       {iconPath:car8,id:8,latitude:null,longitude:null,width: 35,height: 35},
+      {iconPath:car9,id:9,latitude:null,longitude:null,width: 35,height: 35},
+      {iconPath:car10,id:10,latitude:null,longitude:null,width: 35,height: 35},
     ]
   },
 
@@ -128,4 +132,7 @@ Page({
     clearInterval(this.data.MyInterval_d);
   },
 
+  onShareAppMessage: function () {
+
+  }
 })

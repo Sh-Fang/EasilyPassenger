@@ -4,13 +4,33 @@ const app=getApp();
 const driver='driver'
 
 Page({
+  
 
   data: {
+    _phone:"",
+    _passWord:"",
+    _carNum:""
   },
 
   onLoad: function (options) {
-
+    
   },
+
+  list:function(){
+    var that=this
+    cloud.collection(driver).where({
+      identity:"driver"
+    }).get({
+      success: function(res) {
+        // console.log(JSON.stringify(res.data))   //在传递对象的时候，要先将对象转换成字符串类型
+        wx.navigateTo({
+          url: '../list/list?listObj='+JSON.stringify(res.data), //使用字符串进行传递，然后在接收页面对字符串进行转换（转换成对象）
+        });
+      }
+    })
+    
+  }, 
+
 
   text1: function (e) {
     this.data.text1 = e.detail.value
@@ -24,6 +44,7 @@ Page({
 
 
   userRegister:function(){
+    var that=this;
     var userPhone=this.data.text1;
     var userPassword=this.data.text2;
     var carNum=this.data.text3;
@@ -52,12 +73,18 @@ Page({
                 carNum:carNum,
               }
             }).then(res=>{
+              that.setData({  //清空输入框
+                _phone:"",
+                _passWord:"",
+                _carNum:""
+              })
               wx.showToast({
                 title: '注册成功',
                 icon: 'success',
                 duration: 500,
                 mask: false,
               });
+              
             })
           }
         }
@@ -69,6 +96,10 @@ Page({
         duration: 500,
       });
     }  
+  },
+
+  onShareAppMessage: function () {
+
   }
  
 })
