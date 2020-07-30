@@ -11,6 +11,7 @@ const car7="../img/7.png"
 const car8="../img/8.png"
 const car9="../img/9.png"
 const car10="../img/10.png"
+const build="../img/build.png"
 Page({
 
   data: {
@@ -36,6 +37,7 @@ Page({
         {longitude: 117.14523,latitude: 34.210679},//117.14523,34.210679
         {longitude: 117.146823,latitude: 34.211393},//117.146823,34.211393
         {longitude: 117.148255,latitude: 34.213196},//117.148255,34.213196
+        {longitude: 117.15031,latitude: 34.214825},//117.15031,34.214825
         {longitude: 117.151785,latitude: 34.216727},//117.151785,34.216727
         {longitude: 117.151764,latitude: 34.218457},//117.151764,34.218457
         {longitude: 117.150938,latitude: 34.218838},//117.150938,34.218838
@@ -59,6 +61,312 @@ Page({
       {iconPath:car8,id:8,latitude:null,longitude:null,width: 35,height: 35},
       {iconPath:car9,id:9,latitude:null,longitude:null,width: 35,height: 35},
       {iconPath:car10,id:10,latitude:null,longitude:null,width: 35,height: 35},
+      {
+        iconPath:build,
+        id:11,
+        longitude:117.149813,
+        latitude:34.219134,//117.149813,34.219134
+        width: 20,
+        height: 20,
+        label:{
+          content: '北门',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:12,
+        longitude:117.146472,
+        latitude:34.21873,//117.146472,34.21873
+        width: 20,
+        height: 20,
+        label:{
+          content: '第一运动场',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:13,
+        longitude:117.144209,
+        latitude:34.215772,//117.144209,34.215772
+        width: 20,
+        height: 20,
+        label:{
+          content: '图书馆',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:14,
+        longitude:117.141849,
+        latitude:34.214841,//117.141849,34.214841
+        width: 20,
+        height: 20,
+        label:{
+          content: '一食堂',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:15,
+        longitude:117.14547,
+        latitude:34.217693,//117.14547,34.217693
+        width: 20,
+        height: 20,
+        label:{
+          content: '网球场',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:16,
+        longitude:117.141098,
+        latitude:34.213279,//117.141098,34.213279
+        width: 20,
+        height: 20,
+        label:{
+          content: '二食堂',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:17,
+        longitude:117.140953,
+        latitude:34.211407,//117.140953,34.211407
+        width: 20,
+        height: 20,
+        label:{
+          content: '三食堂',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:18,
+        longitude:117.144617,
+        latitude:34.210551,//117.144617,34.210551
+        width: 20,
+        height: 20,
+        label:{
+          content: '不显山',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:19,
+        longitude:117.148013,
+        latitude:34.213266,//117.148013,34.213266
+        width: 20,
+        height: 20,
+        label:{
+          content: '国旗广场',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:20,
+        longitude:117.149574,
+        latitude:34.212295,//117.149574,34.212295
+        width: 20,
+        height: 20,
+        label:{
+          content: '东门',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:21,
+        longitude:117.148883,
+        latitude:34.213938,//117.148883,34.213938
+        width: 20,
+        height: 20,
+        label:{
+          content: '信控学院',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:22,
+        longitude:117.15031,
+        latitude:34.214825,//117.15031,34.214825
+        width: 20,
+        height: 20,
+        label:{
+          content: '机电学院',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:23,
+        longitude:117.151233,
+        latitude:34.215974,//117.151233,34.215974
+        width: 20,
+        height: 20,
+        label:{
+          content: '化工学院',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:24,
+        longitude:117.152,
+        latitude:34.216799,//117.152,34.216799
+        width: 20,
+        height: 20,
+        label:{
+          content: '安全学院',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:25,
+        longitude:117.151609,
+        latitude:34.217731,//117.151609,34.217731
+        width: 20,
+        height: 20,
+        label:{
+          content: '环测学院',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:26,
+        longitude:117.150836,
+        latitude:34.21876,//117.150836,34.21876
+        width: 20,
+        height: 20,
+        label:{
+          content: '资源学院',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
+      {
+        iconPath:build,
+        id:27,
+        longitude:117.148342,
+        latitude:34.219221,//117.148342,34.219221
+        width: 20,
+        height: 20,
+        label:{
+          content: '建筑学院',  //文本
+          color: '#FF0202',  //文本颜色
+          borderRadius: 3,  //边框圆角
+          borderWidth: 1,  //边框宽度
+          borderColor: '#FF0202',  //边框颜色
+          bgColor: '#ffffff',  //背景色
+          padding: 5,  //文本边缘留白
+          textAlign: 'center'  //文本对齐方式。有效值: left, right, center
+        },
+      },
     ]
   },
 
@@ -200,8 +508,9 @@ Page({
 
     let loginStatus="0"   //发送司机下线的消息
     let message=this.data.carNum+","+this.data.longitude+","+this.data.latitude+","+loginStatus
+    
     app.publish(message);
-
+    
     this.setData({
       noticeBar:"定位已关闭",
       isLocate:true,   //将定位按钮设为可以按

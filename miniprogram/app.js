@@ -80,6 +80,11 @@ App({
     })
   },
 
+  onShow(options) {
+    wx.setKeepScreenOn({  //开启屏幕常亮
+      keepScreenOn: true
+    })
+  },
 
 
   onLaunch: function () {

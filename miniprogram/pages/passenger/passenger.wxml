@@ -10,6 +10,7 @@
     markers="{{markers}}"
 ></map>
 
+
 <view class="exit" hover-class="hover">
     <cover-image class="exitImage" src='https://7465-testtest-6zkau-1301141850.tcb.qcloud.la/cancel.png?sign=eb77d13465b6360114cb735b49658f79&t=1581231900' mode="widthFix" bindtap="logout"></cover-image>
 </view>
